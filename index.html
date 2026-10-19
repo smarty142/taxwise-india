@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare India's old and new income tax regimes with a transparent salary tax estimate for Tax Year 2026–27.">
+  <meta name="theme-color" content="#102a43">
+  <title>TaxWise India — Salary Tax Calculator</title>
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="TaxWise India home"><span class="brand-mark">₹</span><span>TaxWise <b>India</b></span></a>
+    <nav><a href="#calculator">Calculator</a><a href="#how-it-works">How it works</a><a href="#sources">Official sources</a></nav>
+    <a class="top-cta" href="#calculator">Calculate tax <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> TAX YEAR 2026–27 · INDIA</div>
+        <h1>Know your tax.<br><em>Keep more of</em> your salary.</h1>
+        <p class="hero-sub">Compare India's old and new tax regimes with a clear, step-by-step estimate. Your numbers stay in this browser.</p>
+        <div class="hero-points"><span>✓ Old vs new regime</span><span>✓ Tax breakdown</span><span>✓ No sign-up</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-card"><div class="art-card-top"><span>YOUR TAKE-HOME</span><span class="art-dot">●</span></div><div class="art-amount">₹ 1,08,450</div><div class="art-line"><span></span></div><div class="art-foot"><span>Estimated monthly</span><span class="art-pill">↑ Plan smarter</span></div></div>
+        <div class="art-stamp">₹</div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Calculator features">
+      <div><span class="trust-icon">01</span><span><b>Transparent maths</b><small>See every calculation step</small></span></div>
+      <div><span class="trust-icon">02</span><span><b>Privacy-first</b><small>No account or data upload</small></span></div>
+      <div><span class="trust-icon">03</span><span><b>Official references</b><small>Rules linked for verification</small></span></div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="section-heading">
+        <div><div class="eyebrow dark-eyebrow">THE CALCULATOR</div><h2>Build your tax picture</h2><p>Enter annual amounts in Indian rupees. Use your estimated taxable salary details, not monthly CTC.</p></div>
+        <label class="year-select">Tax year <select id="taxYear" aria-label="Tax year"><option value="2026-27">2026–27 (current)</option></select></label>
+      </div>
+
+      <div class="calculator-grid">
+        <form id="taxForm" class="input-panel">
+          <div class="panel-title"><span class="step-num">1</span><div><h3>Your income</h3><p>Annual amounts before tax</p></div></div>
+          <label class="field-label" for="salary">Gross annual salary <span class="required">Required</span></label>
+          <div class="money-input"><span>₹</span><input id="salary" type="number" min="0" max="1000000000" step="1000" value="1500000" required inputmode="decimal"></div>
+          <div class="field-help">Include salary, bonus and taxable allowances before standard deduction.</div>
+          <label class="field-label" for="otherIncome">Other ordinary income <span class="optional">Optional</span></label>
+          <div class="money-input"><span>₹</span><input id="otherIncome" type="number" min="0" max="1000000000" step="1000" value="0" inputmode="decimal"></div>
+          <div class="field-help">For example, bank interest. Excludes capital gains and income taxed at special rates.</div>
+          <div class="panel-divider"></div>
+          <div class="panel-title"><span class="step-num">2</span><div><h3>Old-regime deductions</h3><p>Only enter amounts you are eligible to claim</p></div></div>
+          <label class="field-label" for="deductions">Total eligible deductions <span class="optional">Optional</span></label>
+          <div class="money-input"><span>₹</span><input id="deductions" type="number" min="0" max="100000000" step="1000" value="150000" inputmode="decimal"></div>
+          <div class="field-help">Enter the combined eligible amount for items such as Section 80C, 80D, eligible home-loan interest and HRA exemption. Do not include the standard deduction here. Limits and eligibility vary.</div>
+          <div class="panel-divider"></div>
+          <div class="panel-title"><span class="step-num">3</span><div><h3>Personal details</h3><p>Used for the basic estimate</p></div></div>
+          <label class="field-label" for="residency">Residency status</label>
+          <select id="residency" class="select-control"><option value="resident">Resident individual</option><option value="nonresident">Non-resident individual</option></select>
+          <div class="field-help">Section 87A rebate is modelled for resident individuals only.</div>
+          <button type="submit" class="calculate-btn">Calculate my tax <span>→</span></button>
+          <p class="privacy-note"><span>⌁</span> Your entries are calculated locally and are not sent to a server.</p>
+        </form>
+
+        <section class="results-panel" aria-live="polite" aria-label="Tax calculation results">
+          <div class="results-top"><div><div class="eyebrow dark-eyebrow">YOUR ESTIMATE</div><h3>Compare your regimes</h3></div><span class="estimate-badge"><span class="live-dot"></span> Indicative</span></div>
+          <div class="winner-card" id="winnerCard">
+            <div><span class="winner-label">LOWER ESTIMATED TAX</span><h2 id="winnerName">New tax regime</h2><p id="winnerSummary">Based on the details entered</p></div>
+            <div class="winner-savings"><small>Estimated difference</small><strong id="savings">₹ 0</strong></div>
+          </div>
+          <div class="regime-cards">
+            <article class="regime-card" id="newCard">
+              <div class="regime-head"><span class="regime-icon">N</span><span class="regime-name">New regime</span><span class="regime-tag">Default</span></div>
+              <div class="tax-amount" id="newTax">₹ 0</div><div class="tax-caption">Estimated annual tax</div>
+              <div class="mini-rule"></div>
+              <div class="metric"><span>Taxable income</span><b id="newIncome">₹ 0</b></div>
+              <div class="metric"><span>Monthly after-tax salary*</span><b id="newMonthly">₹ 0</b></div>
+              <button type="button" class="details-btn" data-details="new">View breakdown <span>↗</span></button>
+            </article>
+            <article class="regime-card" id="oldCard">
+              <div class="regime-head"><span class="regime-icon old-icon">O</span><span class="regime-name">Old regime</span></div>
+              <div class="tax-amount" id="oldTax">₹ 0</div><div class="tax-caption">Estimated annual tax</div>
+              <div class="mini-rule"></div>
+              <div class="metric"><span>Taxable income</span><b id="oldIncome">₹ 0</b></div>
+              <div class="metric"><span>Monthly after-tax salary*</span><b id="oldMonthly">₹ 0</b></div>
+              <button type="button" class="details-btn" data-details="old">View breakdown <span>↗</span></button>
+            </article>
+          </div>
+          <div class="breakdown" id="breakdown">
+            <div class="breakdown-head"><h4 id="breakdownTitle">New regime breakdown</h4><button type="button" id="closeBreakdown" aria-label="Close breakdown">×</button></div>
+            <div id="breakdownRows"></div>
+          </div>
+          <div class="results-foot">*Monthly after-tax salary is an estimate of (gross salary − annual income tax) ÷ 12. It is not a payroll take-home calculation and excludes PF, professional tax, insurance, other payroll deductions and variable pay timing.</div>
+        </section>
+      </div>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <div class="section-heading compact"><div><div class="eyebrow dark-eyebrow">CLEAR BY DESIGN</div><h2>How the estimate works</h2></div><p>Tax rules can be nuanced. This calculator makes its assumptions visible rather than hiding them.</p></div>
+      <div class="how-grid">
+        <article><span class="how-num">01</span><h3>Start with income</h3><p>Gross salary is reduced by the applicable standard deduction, then eligible ordinary income is added.</p></article>
+        <article><span class="how-num">02</span><h3>Apply regime rules</h3><p>The calculator applies the selected regime's slab rates, then models rebate, surcharge and 4% health and education cess.</p></article>
+        <article><span class="how-num">03</span><h3>Compare the result</h3><p>Compare estimated tax and taxable income. Confirm your eligibility and final liability with official guidance or a tax professional.</p></article>
+      </div>
+    </section>
+
+    <section class="sources-section" id="sources">
+      <div class="sources-copy"><div class="eyebrow dark-eyebrow">RULES & TRANSPARENCY</div><h2>Grounded in official references.</h2><p>Rules are versioned for Tax Year 2026–27. This starter uses a reviewed rule set, not an automatic live connection to government systems. Check official notifications before relying on an estimate.</p><div class="reviewed"><span class="review-check">✓</span><span><b>Rule set included</b><small>Tax Year 2026–27 · Last checked 19 October 2026</small></span></div></div>
+      <div class="source-links">
+        <a href="https://www.incometaxindia.gov.in/en/income-tax-act-202511" target="_blank" rel="noopener noreferrer"><span><b>Income-tax Act, 2025 & Rules, 2026</b><small>CBDT / Income Tax Department</small></span><span class="external">↗</span></a>
+        <a href="https://incometaxindia.gov.in/Documents/Budget2026/FAQs-Budget-2026.pdf" target="_blank" rel="noopener noreferrer"><span><b>Budget 2026 — tax rate FAQs</b><small>Official slab-rate reference</small></span><span class="external">↗</span></a>
+        <a href="https://www.incometaxindia.gov.in/w/deductions-allowable-to-tax-payer" target="_blank" rel="noopener noreferrer"><span><b>Deductions allowed to taxpayers</b><small>Official eligibility reference</small></span><span class="external">↗</span></a>
+        <a href="https://www.incometax.gov.in/iec/foportal/help/new-tax-vs-old-tax-regime-faqs?mobile-app=1" target="_blank" rel="noopener noreferrer"><span><b>Old vs new regime FAQs</b><small>Income Tax e-Filing portal</small></span><span class="external">↗</span></a>
+      </div>
+    </section>
+
+    <section class="disclaimer"><b>Important:</b> This is an educational estimate for resident/non-resident salaried individuals with ordinary income. It does not cover capital gains, special-rate income, agricultural-income integration, AMT, tax treaty calculations, all exemptions, every deduction eligibility rule, or detailed tax-return conditions. Old-regime deductions are a single user-entered total and are not validated. The calculation should not be treated as tax advice or a substitute for the official Income Tax Department calculator.</section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">₹</span><span>TaxWise <b>India</b></span></a><span>Made for clarity, not complexity.</span><div><a href="privacy.html">Privacy</a><a href="#sources">Sources</a></div></footer>
+  <script src="src/tax/tax-rules-2026-27.js"></script>\n  <script src="src/js/app.js"></script>
+</body>
+</html>
